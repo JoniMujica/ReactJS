@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Componente from './components/Componente';
 import Propiedades from './components/Propiedades';
+import Estado from './components/Estado';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           </a>
           </section>
           <section>
+          <hr/>
           <Componente msg="Hola soy un componente funcional expresado desde una prop" /> <br/><br/><br/><br/><br/><br/><br/><br/>
           <Propiedades 
             cadena="Esto es una cadena de texto" 
@@ -46,6 +48,8 @@ function App() {
             elementoReact={<i>Esto es un elemento ReactJS</i>}
             componenteReact={<Componente msg="Soy un componente pasado como Prop " />}
           />
+          <hr/>
+          <Estado />
         </section>
       </header>
     </div>
