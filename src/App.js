@@ -9,6 +9,7 @@ import ComunicacionComponentes from './components/ComunicacionComponentes'
 import {EventosES6, EventosES7, MasSobreEventos} from './components/Eventos';
 import CicloVida from './components/CicloVida';
 import AjaxApis from './components/AjaxApis';
+import ContadorHooks from './components/ContadorHooks';
 
 
 function App() {
@@ -72,6 +73,8 @@ function App() {
           <CicloVida />
           <hr />
           <AjaxApis />
+          <hr />
+          <ContadorHooks />
         </section>
       </header>
     </div>
