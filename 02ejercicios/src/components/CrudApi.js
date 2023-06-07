@@ -3,15 +3,13 @@ import React, { useState } from 'react';
 import { CrudForm } from './CrudForm'
 import { CrudTable } from './CrudTable'
 
-const initialDB = [
-    
-]
 
-export const CrudApp = () => {
+
+export const CrudApi = () => {
 
     const [dataToEdit, setDataToEdit] = useState(null);
 
-    const [db, setDb] = useState(initialDB)
+    const [db, setDb] = useState([])
     
     const createData = (data) => {
         data.id = Date.now();
