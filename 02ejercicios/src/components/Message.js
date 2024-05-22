@@ -11,7 +11,8 @@ const Message = ({msg,bgColor}) => {
     }
   return (
     <div style={styles}>
-        <p>{msg}</p>
+        {/*<p>{msg}</p>  esto para inyectar HTML en react*/}
+        <p dangerouslySetInnerHTML={{__html:msg}}/>
     </div>
   )
 }
