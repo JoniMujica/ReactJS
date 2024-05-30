@@ -1,45 +1,49 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
+
 export const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        const abortController = new AbortController();
-        const signal = abortController.signal;
-        const fetchData = async ()=>{
-            setLoading(true);
+  useEffect(() => {
+    const abortController = new AbortController();
+    const signal = abortController.signal;
 
-            try {
-              const res = await fetch(url);
-              if (!res.ok) {
-                let error = new Error("Error en la peticion fetch")
-                error.status = res.status ||"00";
-                error.statusText = res.statusText || "Ocurrio un error";
-              }
+    const fetchData = async () => {
+      setLoading(true);
 
-              throw error;
+      try {
+        const res = await fetch(url, { signal });
 
-              const json = await res.json();
-
-              if (!signal.aborted) {
-                  setData(json);
-                  setError(null);
-              }
-            } catch (error) {
-              if (!signal.aborted) {
-                setData(null);
-                setError(error);
-              }
-            }
-            finally{
-              setLoading(false);
-            }
+        if (!res.ok) {
+          let err = new Error("Error en la petición Fetch");
+          err.status = res.status || "00";
+          err.statusText = res.statusText || "Ocurrió un error";
+          throw err;
         }
-        
-        fetchData();
-  
-        return ()=> abortController.abort();
-    },[url]);
-  return {data,error,loading};
-}
+
+        const json = await res.json();
+
+        if (!signal.aborted) {
+          setData(json);
+          setError(null);
+        }
+      } catch (error) {
+        if (!signal.aborted) {
+          setData(null);
+          setError(error);
+        }
+      } finally {
+        if (!signal.aborted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => abortController.abort();
+  }, [url]);
+
+  return { data, error, loading };
+};
