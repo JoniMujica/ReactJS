@@ -4,6 +4,13 @@ import { CrudApp } from "./components/CrudApp";
 import SelectsAnidados from "./components/SelectsAnidados";
 import { SongSearch } from "./components/SongSearch";
 
+
+const Persona = {
+  nombre:"Joni",
+  Apellido:"Mujica"
+}
+
+console.log(Persona);
 function App() {
   return (
     <>
